@@ -17,10 +17,12 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
             m = alfavit1.find(plaintext[i])
             shift = alfavit1.find(keyword[i % len(keyword)])
             ciphertext += alfavit1[(m + shift) % 26]
-        else:
+        elif plaintext[i] in alfavit2:
             m = alfavit2.find(plaintext[i])
             shift = alfavit2.find(keyword[i % len(keyword)])
             ciphertext += alfavit2[(m + shift) % 26]
+        else:
+            ciphertext += plaintext[i]
 
     return ciphertext
 
