@@ -46,8 +46,11 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
             m = alfavit1.find(ciphertext[i])
             shift = alfavit1.find(keyword[i % len(keyword)])
             plaintext += alfavit1[(m - shift) % 26]
-        else:
+        elif ciphertext[i] in alfavit2:
             m = alfavit2.find(ciphertext[i])
             shift = alfavit2.find(keyword[i % len(keyword)])
             plaintext += alfavit2[(m - shift) % 26]
+        else:
+            ciphertext += plaintext[i]
+
     return plaintext
