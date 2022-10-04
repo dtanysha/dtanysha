@@ -43,7 +43,7 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     >>> multiplicative_inverse(7, 40)
     23
     """
-    m = 1
+    m = 0
     for i in range(1, phi + 1):
         if (i * e) % phi == 1:
             m = i

@@ -22,7 +22,7 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
             shift = alfavit2.find(keyword[i % len(keyword)])
             ciphertext += alfavit2[(m + shift) % 26]
         else:
-            ciphertext += plaintext[i]
+            plaintext += ciphertext[i]
 
     return ciphertext
 
@@ -51,6 +51,6 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
             shift = alfavit2.find(keyword[i % len(keyword)])
             plaintext += alfavit2[(m - shift) % 26]
         else:
-            ciphertext += plaintext[i]
+            plaintext += ciphertext[i]
 
     return plaintext
