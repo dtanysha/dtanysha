@@ -49,22 +49,22 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     alfavit1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     alfavit2 = "abcdefghijklmnopqrstuvwxyz"
     for i in range(len(ciphertext)):
-        if plaintext[i] in alfavit1:
-            m = alfavit1.find(plaintext[i])
+        if ciphertext[i] in alfavit1:
+            m = alfavit1.find(ciphertext[i])
             if keyword[i % len(keyword)] in alfavit1:
                 shift = alfavit1.find(keyword[i % len(keyword)])
-                ciphertext += alfavit1[(m - shift) % 26]
+                plaintext += alfavit1[(m - shift) % 26]
             elif keyword[i % len(keyword)] in alfavit2:
                 shift = alfavit2.find(keyword[i % len(keyword)])
-                ciphertext += alfavit2[(m - shift) % 26]
-        elif plaintext[i] in alfavit2:
-            m = alfavit2.find(plaintext[i])
+                plaintext += alfavit2[(m - shift) % 26]
+        elif ciphertext[i] in alfavit2:
+            m = alfavit2.find(ciphertext[i])
             if keyword[i % len(keyword)] in alfavit1:
                 shift = alfavit1.find(keyword[i % len(keyword)])
-                ciphertext += alfavit1[(m - shift) % 26]
+                plaintext += alfavit1[(m - shift) % 26]
             elif keyword[i % len(keyword)] in alfavit2:
                 shift = alfavit2.find(keyword[i % len(keyword)])
-                ciphertext += alfavit2[(m - shift) % 26]
+                plaintext += alfavit2[(m - shift) % 26]
         else:
-            ciphertext += plaintext[i]
+            plaintext += ciphertext[i]
     return plaintext
