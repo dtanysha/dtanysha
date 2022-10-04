@@ -14,7 +14,7 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     >>> encrypt_caesar("")
     ''
     """
-    ciphertext = "" #зашифровка
+    ciphertext = ""  # зашифровка
     alfavit1 = "abcdefghijklmnopqrstuvwxyz"
     alfavit2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     for i in range(len(plaintext)):
@@ -43,7 +43,7 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     >>> decrypt_caesar("")
     ''
     """
-    plaintext = "" #расшифровка
+    plaintext = ""  # расшифровка
     alfavit1 = "abcdefghijklmnopqrstuvwxyz"
     alfavit2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     for i in range(len(ciphertext)):
