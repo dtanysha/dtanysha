@@ -15,18 +15,18 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     for i in range(len(plaintext)):
         if plaintext[i] in alfavit1:
             m = alfavit1.find(plaintext[i])
-            if keyword[i] in alfavit1:
+            if keyword[i % len(keyword)] in alfavit1:
                 shift = alfavit1.find(keyword[i % len(keyword)])
                 ciphertext += alfavit1[(m + shift) % 26]
-            elif keyword[i] in alfavit2:
+            elif keyword[i % len(keyword)] in alfavit2:
                 shift = alfavit2.find(keyword[i % len(keyword)])
                 ciphertext += alfavit2[(m + shift) % 26]
         elif plaintext[i] in alfavit2:
             m = alfavit2.find(plaintext[i])
-            if keyword[i] in alfavit1:
+            if keyword[i % len(keyword)] in alfavit1:
                 shift = alfavit1.find(keyword[i % len(keyword)])
                 ciphertext += alfavit1[(m + shift) % 26]
-            elif keyword[i] in alfavit2:
+            elif keyword[i % len(keyword)] in alfavit2:
                 shift = alfavit2.find(keyword[i % len(keyword)])
                 ciphertext += alfavit2[(m + shift) % 26]
         else:
