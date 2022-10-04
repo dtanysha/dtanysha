@@ -14,8 +14,19 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     >>> encrypt_caesar("")
     ''
     """
-    ciphertext = ""
-    # PUT YOUR CODE HERE
+    ciphertext = "" #зашифровка
+    alfavit1 = "abcdefghijklmnopqrstuvwxyz"
+    alfavit2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    for i in range(len(plaintext)):
+        if plaintext[i] in alfavit1:
+            m = alfavit1.index(plaintext[i])
+            ciphertext += alfavit1[(m + shift) % 26]
+        elif plaintext[i] in alfavit2:
+            m = alfavit2.index(plaintext[i])
+            ciphertext += alfavit2[(m + shift) % 26]
+        else:
+            ciphertext += plaintext[i]
+
     return ciphertext
 
 
@@ -32,8 +43,19 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     >>> decrypt_caesar("")
     ''
     """
-    plaintext = ""
-    # PUT YOUR CODE HERE
+    plaintext = "" #расшифровка
+    alfavit1 = "abcdefghijklmnopqrstuvwxyz"
+    alfavit2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    for i in range(len(ciphertext)):
+        if ciphertext[i] in alfavit1:
+            m = alfavit1.index(ciphertext[i])
+            plaintext += alfavit1[(m - shift) % 26]
+        elif ciphertext[i] in alfavit2:
+            m = alfavit2.index(ciphertext[i])
+            plaintext += alfavit2[(m - shift) % 26]
+        else:
+            plaintext += ciphertext[i]
+
     return plaintext
 
 
@@ -42,5 +64,10 @@ def caesar_breaker_brute_force(ciphertext: str, dictionary: tp.Set[str]) -> int:
     Brute force breaking a Caesar cipher.
     """
     best_shift = 0
-    # PUT YOUR CODE HERE
+    for best_shift in range(26):
+        if decrypt_caesar(ciphertext) in dictionary:
+            return best_shift
+
+
+
     return best_shift

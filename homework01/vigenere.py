@@ -10,7 +10,18 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'LXFOPVEFRNHR'
     """
     ciphertext = ""
-    # PUT YOUR CODE HERE
+    alfavit1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    alfavit2 = "abcdefghijklmnopqrstuvwxyz"
+    for i in range(len(plaintext)):
+        if plaintext[i] in alfavit1:
+            m = alfavit1.find(plaintext[i])
+            shift = alfavit1.find(keyword[i%len(keyword)])
+            ciphertext += alfavit1[(m + shift) % 26]
+        else:
+            m = alfavit2.find(plaintext[i])
+            shift = alfavit2.find(keyword[i % len(keyword)])
+            ciphertext += alfavit2[(m + shift) % 26]
+
     return ciphertext
 
 
@@ -26,5 +37,15 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     'ATTACKATDAWN'
     """
     plaintext = ""
-    # PUT YOUR CODE HERE
+    alfavit1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    alfavit2 = "abcdefghijklmnopqrstuvwxyz"
+    for i in range(len(ciphertext)):
+        if ciphertext[i] in alfavit1:
+            m = alfavit1.find(ciphertext[i])
+            shift = alfavit1.find(keyword[i % len(keyword)])
+            plaintext += alfavit1[(m - shift) % 26]
+        else:
+            m = alfavit2.find(ciphertext[i])
+            shift = alfavit2.find(keyword[i % len(keyword)])
+            plaintext += alfavit2[(m - shift) % 26]
     return plaintext
