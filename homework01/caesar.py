@@ -14,16 +14,16 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     >>> encrypt_caesar("")
     ''
     """
-    ciphertext = ""  # зашифровка
-    alfavit1 = "abcdefghijklmnopqrstuvwxyz"
-    alfavit2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    ciphertext = ""
+    alfavit = "abcdefghijklmnopqrstuvwxyz"
+
     for i in range(len(plaintext)):
-        if plaintext[i] in alfavit1:
-            m = alfavit1.index(plaintext[i])
-            ciphertext += alfavit1[(m + shift) % 26]
-        elif plaintext[i] in alfavit2:
-            m = alfavit2.index(plaintext[i])
-            ciphertext += alfavit2[(m + shift) % 26]
+        if plaintext[i].islower():
+            m = alfavit.index(plaintext[i])
+            ciphertext += alfavit[(m + shift) % len(alfavit)]
+        elif plaintext[i].isupper():
+            m = alfavit.index(plaintext[i].lower())
+            ciphertext += alfavit[(m + shift) % len(alfavit)].upper()
         else:
             ciphertext += plaintext[i]
 
@@ -43,16 +43,16 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     >>> decrypt_caesar("")
     ''
     """
-    plaintext = ""  # расшифровка
-    alfavit1 = "abcdefghijklmnopqrstuvwxyz"
-    alfavit2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    plaintext = ""
+    alfavit = "abcdefghijklmnopqrstuvwxyz"
+
     for i in range(len(ciphertext)):
-        if ciphertext[i] in alfavit1:
-            m = alfavit1.index(ciphertext[i])
-            plaintext += alfavit1[(m - shift) % 26]
-        elif ciphertext[i] in alfavit2:
-            m = alfavit2.index(ciphertext[i])
-            plaintext += alfavit2[(m - shift) % 26]
+        if ciphertext[i].islower():
+            m = alfavit.index(ciphertext[i])
+            plaintext += alfavit[(m - shift) % len(alfavit)]
+        elif ciphertext[i].isupper():
+            m = alfavit.index(ciphertext[i].lower())
+            plaintext += alfavit[(m - shift) % len(alfavit)].upper()
         else:
             plaintext += ciphertext[i]
 
